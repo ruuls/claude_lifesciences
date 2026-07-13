@@ -222,8 +222,20 @@ button.ctl:focus-visible, a:focus-visible{outline:2px solid var(--accent); outli
 /* ---------- counterfactual ---------- */
 .cf .baseline{font-family:var(--font-mono); font-size:13px; color:var(--dim); margin-bottom:14px}
 .cf .baseline b{color:var(--warn); font-size:15px}
+.cfproj{display:flex; align-items:center; gap:16px; background:var(--panel-3); border:1px solid var(--line);
+  border-radius:11px; padding:12px 16px; margin-bottom:16px; flex-wrap:wrap}
+.cfproj .lab{font-family:var(--font-mono); font-size:10.5px; letter-spacing:.1em; text-transform:uppercase; color:var(--faint)}
+.cfproj .from{font-family:var(--font-mono); font-size:20px; color:var(--warn); font-weight:600}
+.cfproj .arrow{color:var(--faint)}
+.cfproj .to{font-family:var(--font-mono); font-size:30px; font-weight:660; letter-spacing:-.01em; transition:color .3s}
+.cfproj .edit-name{font-size:12.5px; color:var(--dim); flex:1 1 200px; min-width:0}
+.cfproj .hint{font-family:var(--font-mono); font-size:10.5px; color:var(--faint)}
 .bars{display:flex; flex-direction:column; gap:9px}
-.barrow{display:grid; grid-template-columns:1fr 320px; gap:14px; align-items:center}
+.barrow{display:grid; grid-template-columns:1fr 320px; gap:14px; align-items:center; cursor:pointer;
+  border:1px solid transparent; border-radius:9px; padding:5px 8px; margin:-5px -8px; transition:background .2s,border-color .2s}
+.barrow:hover{background:var(--panel-3)}
+.barrow.sel{background:var(--panel-3); border-color:var(--accent)}
+.barrow:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
 @media (max-width:720px){ .barrow{grid-template-columns:1fr} }
 .barrow .edit{font-size:13px}
 .bartrack{position:relative; height:26px; background:var(--panel-3); border:1px solid var(--line); border-radius:7px; overflow:hidden}
@@ -255,6 +267,7 @@ button.ctl:focus-visible, a:focus-visible{outline:2px solid var(--accent); outli
   <div class="topbar-in">
     <div class="brand"><span class="pulse"></span><b>TrialPremortem</b><span>autonomous protocol pre-mortem</span></div>
     <span class="spacer"></span>
+    <span class="chip" id="modechip" title="This page replays a real recorded agentic run — deterministic and offline. It does not call live databases in the browser.">▷ replaying recorded run</span>
     <span class="chip good">validated AUC 0.67 · backtested on 927 trials</span>
     <div class="controls">
       <button class="ctl primary" id="btnPlay">▶ Play run</button>
@@ -351,6 +364,11 @@ button.ctl:focus-visible, a:focus-visible{outline:2px solid var(--accent); outli
         <div class="eyebrow reveal" data-stage="5"><span class="n">05</span> Counterfactual — which design change lowers risk most?</div>
         <div class="cf reveal" data-stage="5">
           <div class="baseline" id="cf-base"></div>
+          <div class="cfproj" id="cfproj">
+            <div><div class="lab">projected risk</div><span class="from" id="cfp-from">0.000</span> <span class="arrow">→</span> <span class="to" id="cfp-to">0.000</span></div>
+            <div class="edit-name" id="cfp-edit">baseline design (no edits)</div>
+            <div class="hint">▸ click an edit to preview</div>
+          </div>
           <div class="bars" id="cf-bars"></div>
         </div>
         <div class="summary reveal" data-stage="5" id="summary" style="margin-top:22px"></div>
@@ -483,16 +501,31 @@ button.ctl:focus-visible, a:focus-visible{outline:2px solid var(--accent); outli
   const maxv = Math.max(base, ...cf.scenarios.map(s=>+s.new_risk||0), 0.5);
   const bars = $("#cf-bars");
   const barFills=[];
+  function riskColor(v){ return riskClass(v)[1]; }
+  function projectTo(nv, editName, row){
+    $("#cfp-from").textContent = base.toFixed(3);
+    const to=$("#cfp-to"); to.textContent = nv.toFixed(3); to.style.color = riskColor(nv);
+    $("#cfp-edit").textContent = editName;
+    document.querySelectorAll(".barrow.sel").forEach(r=>r.classList.remove("sel"));
+    if(row) row.classList.add("sel");
+  }
   cf.scenarios.forEach(s=>{
     const nv=+s.new_risk||0, dv=+s.delta||0, down=dv<0;
     const row=el("div","barrow reveal"); row.setAttribute("data-stage","5");
+    row.setAttribute("role","button"); row.setAttribute("tabindex","0");
+    row.setAttribute("aria-label", `${s.edit}: projected risk ${nv.toFixed(3)}`);
     const basePct=(base/maxv*100).toFixed(1);
     row.innerHTML = `<div class="edit">${esc(s.edit)}<span class="bardelta ${down?"down":"up"}">${down?"":"+"}${dv.toFixed(3)}</span></div>`+
       `<div class="bartrack"><div class="baseref" style="left:${basePct}%"></div>`+
       `<div class="barfill ${down?"down":"up"}" data-w="${(nv/maxv*100).toFixed(1)}"></div>`+
       `<span class="barval">${nv.toFixed(3)}</span></div>`;
+    const pick=()=>projectTo(nv, s.edit, row);
+    row.addEventListener("click", pick);
+    row.addEventListener("keydown", e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); pick(); }});
     bars.appendChild(row); barFills.push(row.querySelector(".barfill"));
   });
+  // initialize projection at baseline
+  projectTo(base, "baseline design (no edits)", null);
 
   // summary + footer
   const beats = RUN._demo_beats||{};

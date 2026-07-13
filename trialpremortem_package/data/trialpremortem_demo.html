@@ -120,6 +120,13 @@ button.ctl:focus-visible, a:focus-visible{outline:2px solid var(--accent); outli
 .reveal.on{opacity:1; transform:none}
 @media (prefers-reduced-motion: reduce){ .reveal{transition:none} .playing .pulse{animation:none} .cursor{animation:none} }
 
+/* ---------- trial banner ---------- */
+.trialcard{border-color:color-mix(in oklab,var(--accent) 32%,var(--line))}
+.trialcard::before{content:""; position:absolute}
+.trialname{font-size:clamp(20px,2.6vw,27px); font-weight:640; letter-spacing:-.01em; margin:2px 0 6px}
+.trialsub{color:var(--dim); font-size:13.5px; margin-bottom:20px; max-width:74ch}
+.trialsub b{color:var(--warn)}
+
 /* ---------- draft case-file ---------- */
 .casefile{display:grid; grid-template-columns:1.3fr 1fr; gap:24px}
 @media (max-width:620px){ .casefile{grid-template-columns:1fr} }
@@ -267,16 +274,11 @@ button.ctl:focus-visible, a:focus-visible{outline:2px solid var(--accent); outli
   <div class="topbar-in">
     <div class="brand"><span class="pulse"></span><b>TrialPremortem</b><span>autonomous protocol pre-mortem</span></div>
     <span class="spacer"></span>
-    <span class="chip" id="modechip" title="This page replays a real recorded agentic run — deterministic and offline. It does not call live databases in the browser.">▷ replaying recorded run</span>
     <span class="chip good">validated AUC 0.67 · backtested on 927 trials</span>
     <div class="controls">
-      <button class="ctl primary" id="btnPlay">▶ Play run</button>
-      <button class="ctl" id="btnSpeed">1×</button>
-      <button class="ctl" id="btnEnd" title="Skip to end">⏭ End</button>
       <button class="ctl" id="btnTheme" title="Toggle theme">◐</button>
     </div>
   </div>
-  <div class="progress"><div class="bar" id="progbar"></div></div>
 </div>
 
 <div class="wrap">
@@ -307,8 +309,10 @@ button.ctl:focus-visible, a:focus-visible{outline:2px solid var(--accent); outli
 
     <main id="stream">
       <!-- stage 0: draft -->
-      <section class="card reveal" data-stage="0">
-        <div class="eyebrow"><span class="n">00</span> Draft under review</div>
+      <section class="card trialcard" data-stage="0">
+        <div class="eyebrow"><span class="n">00</span> Trial under review</div>
+        <h2 class="trialname" id="trial-name"></h2>
+        <div class="trialsub" id="trial-sub"></div>
         <div class="casefile">
           <div class="kv" id="draft-kv"></div>
           <div class="designchips" id="draft-chips"></div>
@@ -397,6 +401,11 @@ button.ctl:focus-visible, a:focus-visible{outline:2px solid var(--accent); outli
 
   // ================= RENDER (content, initially hidden) =================
   const d = RUN.draft;
+  const armTxt = d.n_arms==2 ? " · "+esc(d.drug||"")+" vs placebo" : (d.drug?" · "+esc(d.drug):"");
+  $("#trial-name").innerHTML = `${esc(d.cond)} — ${esc((d.phase||"").replace("PHASE","Phase "))}${armTxt}`;
+  $("#trial-sub").innerHTML = `Draft protocol under review — <b>no patients enrolled yet</b>. `+
+    `A deliberately over-restrictive first draft, used here to show a checkable mechanism flaw. `+
+    `It carries no registry (NCT) id because it is a design draft, not a filed trial; the risk engine scoring it is backtested on 927 real ClinicalTrials.gov trials.`;
   const kv = $("#draft-kv");
   const rows = [
     ["condition", esc(d.cond)],
@@ -540,113 +549,56 @@ button.ctl:focus-visible, a:focus-visible{outline:2px solid var(--accent); outli
    ["unverified ids","0","stripped by the gate"]
   ].forEach(([l,v,s])=>{ const c=el("div","sc"); c.innerHTML=`<b>${esc(v)}</b><small>${esc(l)}<br>${esc(s)}</small>`; summary.appendChild(c); });
   $("#finrule").innerHTML = `<span class="ok">✓</span> ${esc(beats.critic_action||"agentic run complete")} — every shipped citation verified against real tool output.`;
-  $("#footnote").innerHTML = "Deterministic offline playback of a real recorded run · "+esc(beats.agency||"")+
+  $("#footnote").innerHTML = "A real recorded run of the agent on this draft · "+esc(beats.agency||"")+
     " · the ML risk engine is numpy-only and backtested leak-free (v0 draft, ACTUAL enrollment dropped).";
 
-  // ================= PLAYBACK ENGINE =================
+  // ================= STATIC RENDER (no playback) =================
+  // Everything is shown at once — this reads as an analysis report, not a video.
   const steps = document.querySelectorAll("#stepper .step");
-  const reveals = Array.from(document.querySelectorAll(".reveal"));
-  // ordering: reveals already in DOM order = pipeline order
-  let idx = 0, playing=false, timer=null, speed=1, done=false;
-  const SPEEDS=[1,2,4,0.5];
-  const baseDelay = node => {
-    const st=+node.getAttribute("data-stage");
-    if(node.classList.contains("call")) return 150;
-    if(node.classList.contains("hyp")) return 380;
-    if(node.classList.contains("barrow")) return 260;
-    if(node.classList.contains("finding")) return 900;
-    if(node.classList.contains("th")) return 220;
-    if(st===0) return 500;
-    return 520;
-  };
 
-  function setStage(st){
-    steps.forEach(s=>{ const v=+s.getAttribute("data-stage");
-      s.classList.toggle("active", v===st); s.classList.toggle("done", v<st); });
-  }
-  function applySideEffects(node){
-    const st=+node.getAttribute("data-stage");
-    // triage gauge fills when its row reveals
-    if(st===1 && node.classList.contains("triage")){
-      const pct=Math.max(2,Math.min(100,rv*100));
-      $("#gfill").style.width=pct+"%"; $("#gmark").style.left=pct+"%";
-      const [cls,col]=riskClass(rv);
-      $("#gtip").textContent=rv.toFixed(3); $("#gtip").style.color=col;
-      $("#gmark").style.background=col;
-      animNum($("#risk-big"), rv, 3); $("#risk-cls").textContent=cls+" risk";
-      $("#risk-cls").style.color=col; $("#risk-big").style.color=col;
-    }
-    // connector counters tick up as calls reveal
-    if(node.classList.contains("call")){
-      const info=node.__call; if(info){ const c=connEls[info.tool];
-        if(c){ c.made++; if(info.ok)c.data++;
-          c.node.querySelector(".live-n").textContent=c.made;
-          c.node.querySelector(".data-n").textContent=c.data;
-          c.node.classList.add("live");
-          clearTimeout(c._t); c._t=setTimeout(()=>c.node.classList.remove("live"),450);
-        } }
-    }
-    // counterfactual bars grow
-    if(node.classList.contains("barrow")){ const bf=node.querySelector(".barfill"); if(bf) bf.style.width=bf.getAttribute("data-w")+"%"; }
-  }
-  // attach call info to nodes
-  callNodes.forEach(c=>{ c.row.__call={tool:c.tool, ok:c.ok}; });
+  // reveal all content
+  document.querySelectorAll(".reveal").forEach(n=>n.classList.add("on"));
 
-  function revealNext(){
-    if(idx>=reveals.length){ finish(); return; }
-    const node=reveals[idx];
-    setStage(+node.getAttribute("data-stage"));
-    node.classList.add("on");
-    applySideEffects(node);
-    idx++;
-    updateProgress();
-    if(playing){ const dl=reduce?0:baseDelay(node)/speed; timer=setTimeout(revealNext, dl); }
-  }
-  function finish(){ playing=false; done=true; setStage(5);
-    steps.forEach(s=>s.classList.add("done")); steps[steps.length-1].classList.remove("done"); steps[steps.length-1].classList.add("active");
-    document.body.classList.remove("playing"); btnPlay.innerHTML="↻ Replay"; updateProgress(); }
-  function updateProgress(){ $("#progbar").style.width=(idx/reveals.length*100).toFixed(1)+"%"; }
+  // triage gauge + readout -> final values
+  (function fillTriage(){
+    const pct=Math.max(2,Math.min(100,rv*100));
+    $("#gfill").style.width=pct+"%"; $("#gmark").style.left=pct+"%";
+    const [cls,col]=riskClass(rv);
+    $("#gtip").textContent=rv.toFixed(3); $("#gtip").style.color=col; $("#gmark").style.background=col;
+    $("#risk-big").textContent=rv.toFixed(3); $("#risk-big").style.color=col;
+    $("#risk-cls").textContent=cls+" risk"; $("#risk-cls").style.color=col;
+  })();
 
-  function animNum(node,to,dec){ if(reduce){node.textContent=to.toFixed(dec);return;}
-    let cur=0; const t0=performance.now(), dur=900;
-    (function tick(t){ const k=Math.min(1,(t-t0)/dur); cur=to*(k<1?(1-Math.pow(1-k,3)):1);
-      node.textContent=cur.toFixed(dec); if(k<1)requestAnimationFrame(tick); })(t0);
-  }
+  // connector counters -> totals (final)
+  Object.keys(connEls).forEach(k=>{ const c=connEls[k];
+    const total=(ca[k]&&ca[k].calls)||0, data=(ca[k]&&ca[k].succeeded_with_data)||0;
+    c.node.querySelector(".live-n").textContent=total;
+    c.node.querySelector(".data-n").textContent=data;
+    if(data>0) c.node.classList.add("live");
+  });
 
-  function play(){
-    if(done){ restart(); }
-    playing=true; document.body.classList.add("playing");
-    btnPlay.innerHTML="⏸ Pause"; revealNext();
-  }
-  function pause(){ playing=false; clearTimeout(timer); document.body.classList.remove("playing"); btnPlay.innerHTML="▶ Resume"; }
-  function restart(){ clearTimeout(timer); idx=0; done=false;
-    reveals.forEach(n=>n.classList.remove("on"));
-    barFills.forEach(b=>b.style.width="0");
-    $("#gfill").style.width="0"; $("#gmark").style.left="0";
-    Object.values(connEls).forEach(c=>{c.made=0;c.data=0;
-      c.node.querySelector(".live-n").textContent="0"; c.node.querySelector(".data-n").textContent="0"; c.node.classList.remove("live");});
-    setStage(0); updateProgress();
-  }
-  function toEnd(){ clearTimeout(timer); playing=false;
-    while(idx<reveals.length){ const node=reveals[idx]; node.classList.add("on"); setStage(+node.getAttribute("data-stage")); applySideEffects(node); idx++; }
-    finish();
-  }
+  // counterfactual bars -> filled
+  barFills.forEach(b=>b.style.width=b.getAttribute("data-w")+"%");
 
-  const btnPlay=$("#btnPlay");
-  btnPlay.addEventListener("click",()=>{ playing?pause():play(); });
-  $("#btnEnd").addEventListener("click", toEnd);
-  $("#btnSpeed").addEventListener("click",e=>{ const i=(SPEEDS.indexOf(speed)+1)%SPEEDS.length; speed=SPEEDS[i]; e.target.textContent=speed+"×"; });
+  // ---- stepper as a scroll table-of-contents (click to jump, highlight on scroll) ----
+  const sections = {}; document.querySelectorAll("main > section[data-stage]").forEach(s=>{ sections[s.getAttribute("data-stage")]=s; });
+  steps.forEach(st=>{
+    st.style.cursor="pointer"; st.setAttribute("role","link"); st.setAttribute("tabindex","0");
+    const go=()=>{ const t=sections[st.getAttribute("data-stage")]; if(t) t.scrollIntoView({behavior: reduce?"auto":"smooth", block:"start"}); };
+    st.addEventListener("click", go);
+    st.addEventListener("keydown", e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); go(); }});
+  });
+  function markActive(stage){ steps.forEach(s=>s.classList.toggle("active", s.getAttribute("data-stage")===String(stage))); }
+  function currentStage(){ let best="0", bestTop=-1e9;
+    Object.keys(sections).forEach(k=>{ const t=sections[k].getBoundingClientRect().top;
+      if(t<=170 && t>bestTop){ bestTop=t; best=k; } }); return best; }
+  function onNavScroll(){ markActive(currentStage()); }
+  addEventListener("scroll", onNavScroll, {passive:true}); onNavScroll();
+
+  // theme toggle
   $("#btnTheme").addEventListener("click",()=>{ const r=document.documentElement;
     const cur=r.getAttribute("data-theme")|| (window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");
     r.setAttribute("data-theme", cur==="dark"?"light":"dark"); });
-
-  // initialize: show stage 0 statically so the page isn't blank before Play
-  restart();
-  reveals.filter(n=>+n.getAttribute("data-stage")===0).forEach(n=>n.classList.add("on"));
-  setStage(0);
-  // auto-start after a beat so a shared screen begins moving
-  if(!reduce) setTimeout(()=>{ if(idx<=1 && !playing && !done) play(); }, 900);
-  else toEnd();
 })();
 </script>
 </body>

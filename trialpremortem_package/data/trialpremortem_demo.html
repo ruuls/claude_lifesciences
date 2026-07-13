@@ -120,6 +120,23 @@ button.ctl:focus-visible, a:focus-visible{outline:2px solid var(--accent); outli
 .reveal.on{opacity:1; transform:none}
 @media (prefers-reduced-motion: reduce){ .reveal{transition:none} .playing .pulse{animation:none} .cursor{animation:none} }
 
+/* ---------- how-to-read guide ---------- */
+.howto{background:var(--accent-soft); border:1px solid color-mix(in oklab,var(--accent) 38%,var(--line));
+  border-radius:14px; padding:18px 20px; margin-bottom:22px}
+.howto .htag{display:inline-flex; gap:7px; align-items:center; font-family:var(--font-mono); font-size:10.5px;
+  letter-spacing:.1em; text-transform:uppercase; color:var(--accent); margin-bottom:10px}
+.howto h3{font-size:16px; font-weight:620; margin:0 0 6px}
+.howto p{margin:0 0 10px; color:var(--dim); font-size:13.5px; line-height:1.6; max-width:80ch}
+.howto ol{margin:0; padding-left:20px; color:var(--dim); font-size:13px; line-height:1.7}
+.howto ol b{color:var(--ink)}
+.howto .clickcue{margin-top:12px; font-size:13px; color:var(--ink); display:flex; gap:9px; align-items:center}
+.howto .clickcue .pill{font-family:var(--font-mono); font-size:11px; background:var(--accent); color:var(--accent-ink);
+  padding:2px 8px; border-radius:6px; font-weight:600}
+
+/* per-section plain-language note */
+.stagenote{color:var(--dim); font-size:13px; line-height:1.55; margin:-4px 0 16px; max-width:74ch}
+.stagenote b{color:var(--ink)}
+
 /* ---------- trial banner ---------- */
 .trialcard{border-color:color-mix(in oklab,var(--accent) 32%,var(--line))}
 .trialcard::before{content:""; position:absolute}
@@ -237,13 +254,19 @@ button.ctl:focus-visible, a:focus-visible{outline:2px solid var(--accent); outli
 .cfproj .to{font-family:var(--font-mono); font-size:30px; font-weight:660; letter-spacing:-.01em; transition:color .3s}
 .cfproj .edit-name{font-size:12.5px; color:var(--dim); flex:1 1 200px; min-width:0}
 .cfproj .hint{font-family:var(--font-mono); font-size:10.5px; color:var(--faint)}
-.bars{display:flex; flex-direction:column; gap:9px}
-.barrow{display:grid; grid-template-columns:1fr 320px; gap:14px; align-items:center; cursor:pointer;
-  border:1px solid transparent; border-radius:9px; padding:5px 8px; margin:-5px -8px; transition:background .2s,border-color .2s}
-.barrow:hover{background:var(--panel-3)}
-.barrow.sel{background:var(--panel-3); border-color:var(--accent)}
+.clickhint{display:flex; gap:9px; align-items:center; font-size:13px; color:var(--ink); margin-bottom:12px}
+.clickhint .pill{font-family:var(--font-mono); font-size:11px; background:var(--accent); color:var(--accent-ink); padding:2px 8px; border-radius:6px; font-weight:600}
+.bars{display:flex; flex-direction:column; gap:8px}
+.barrow{display:grid; grid-template-columns:1fr 300px 78px; gap:14px; align-items:center; cursor:pointer;
+  border:1px solid var(--line); border-radius:9px; padding:9px 12px; background:var(--panel-3); transition:background .18s,border-color .18s,transform .1s}
+.barrow:hover{border-color:var(--accent); transform:translateX(2px)}
+.barrow.sel{border-color:var(--accent); background:color-mix(in oklab,var(--accent) 12%,var(--panel-3))}
 .barrow:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
-@media (max-width:720px){ .barrow{grid-template-columns:1fr} }
+.rowcue{font-family:var(--font-mono); font-size:11px; color:var(--faint); text-align:right; white-space:nowrap; transition:color .18s}
+.barrow:hover .rowcue{color:var(--accent)}
+.barrow.sel .rowcue{color:var(--accent)}
+.barrow.sel .rowcue::before{content:"✓ "}
+@media (max-width:720px){ .barrow{grid-template-columns:1fr 78px} .barrow .bartrack{grid-column:1 / -1} }
 .barrow .edit{font-size:13px}
 .bartrack{position:relative; height:26px; background:var(--panel-3); border:1px solid var(--line); border-radius:7px; overflow:hidden}
 .barfill{position:absolute; top:0; bottom:0; left:0; width:0; border-radius:6px; transition:width 1s cubic-bezier(.2,.7,.2,1)}
@@ -308,6 +331,23 @@ button.ctl:focus-visible, a:focus-visible{outline:2px solid var(--accent); outli
     </aside>
 
     <main id="stream">
+      <!-- how to read this -->
+      <div class="howto">
+        <span class="htag">▣ read-only report · how to read it</span>
+        <h3>This is a completed analysis, not a live app.</h3>
+        <p>It shows one real run of the agent reviewing the draft protocol below — captured and laid out so you can
+          read it top to bottom. You scroll it; you don't have to run anything. The five stages follow the agent's
+          actual pipeline:</p>
+        <ol>
+          <li><b>Triage</b> — the model's overall risk score for this draft (0–1; higher = more likely to fail to recruit).</li>
+          <li><b>Hypotheses</b> — the failure theories the agent invented for this specific trial.</li>
+          <li><b>Investigation</b> — the medical databases it chose to search per theory (✓ = the search returned data).</li>
+          <li><b>Register</b> — the findings it kept, each with real sources the critic verified.</li>
+          <li><b>Counterfactual</b> — design fixes and their effect on the risk.</li>
+        </ol>
+        <div class="clickcue"><span class="pill">One interactive part</span> the <b>Counterfactual</b> at the bottom — click a fix to preview its risk.</div>
+      </div>
+
       <!-- stage 0: draft -->
       <section class="card trialcard" data-stage="0">
         <div class="eyebrow"><span class="n">00</span> Trial under review</div>
@@ -322,6 +362,7 @@ button.ctl:focus-visible, a:focus-visible{outline:2px solid var(--accent); outli
       <!-- stage 1: triage -->
       <section class="card" data-stage="1">
         <div class="eyebrow reveal" data-stage="1"><span class="n">01</span> Triage — validated accrual-risk engine</div>
+        <p class="stagenote">The score below is this draft's <b>accrual-failure risk</b>, 0 to 1. It comes from a model backtested on 927 real trials, comparing this design to how similar trials were built. The dial and the number are the same value.</p>
         <div class="triage reveal" data-stage="1">
           <div>
             <div class="gauge" id="gauge">
@@ -346,12 +387,14 @@ button.ctl:focus-visible, a:focus-visible{outline:2px solid var(--accent); outli
       <!-- stage 2: hypotheses -->
       <section class="card" data-stage="2">
         <div class="eyebrow reveal" data-stage="2"><span class="n">02</span> Hypothesis generation — draft-specific failure modes</div>
+        <p class="stagenote">Before searching anything, the agent writes its own theories for how <b>this particular trial</b> could fail to recruit. Each becomes a separate investigation below.</p>
         <div class="hyps" id="hyps"></div>
       </section>
 
       <!-- stage 3: investigation -->
       <section class="card" data-stage="3">
         <div class="eyebrow reveal" data-stage="3"><span class="n">03</span> Autonomous investigation — one tool-use loop per hypothesis</div>
+        <p class="stagenote">For each theory the agent decides which biomedical databases to query (drug mechanism, disease targets, published literature, similar trials) and how many times. <b>✓</b> = that search returned usable data; <b>·</b> = it came back empty. The counters show how many of each connector's calls found data.</p>
         <div class="invhead reveal" data-stage="3" id="connbar"></div>
         <div id="traces"></div>
       </section>
@@ -359,6 +402,7 @@ button.ctl:focus-visible, a:focus-visible{outline:2px solid var(--accent); outli
       <!-- stage 4: register -->
       <section class="card" data-stage="4">
         <div class="eyebrow reveal" data-stage="4"><span class="n">04</span> Adversarial critic + citation gate — ranked register</div>
+        <p class="stagenote">The findings the agent kept, ranked by severity. Each shows the sources it's built on (PMID = a paper, NCT = a trial, ChEMBL = a drug record) and a critic's verdict (<b>upheld / downgraded / rejected</b>). Every id is checked against what the databases actually returned — anything the model made up is stripped before it reaches here.</p>
         <div class="gatebar reveal" data-stage="4"><span class="lock">🔒</span><span id="gatetext"></span></div>
         <div id="register"></div>
       </section>
@@ -366,13 +410,14 @@ button.ctl:focus-visible, a:focus-visible{outline:2px solid var(--accent); outli
       <!-- stage 5: counterfactual -->
       <section class="card" data-stage="5">
         <div class="eyebrow reveal" data-stage="5"><span class="n">05</span> Counterfactual — which design change lowers risk most?</div>
+        <p class="stagenote">The engine re-scores the draft under different design edits, so you can see which change helps most. <b>This is the part you can click.</b></p>
         <div class="cf reveal" data-stage="5">
           <div class="baseline" id="cf-base"></div>
           <div class="cfproj" id="cfproj">
             <div><div class="lab">projected risk</div><span class="from" id="cfp-from">0.000</span> <span class="arrow">→</span> <span class="to" id="cfp-to">0.000</span></div>
             <div class="edit-name" id="cfp-edit">baseline design (no edits)</div>
-            <div class="hint">▸ click an edit to preview</div>
           </div>
+          <div class="clickhint"><span class="pill">↓ Try it</span> This is the one interactive part — click any design fix below and the projected risk above updates to what the engine scored for that change.</div>
           <div class="bars" id="cf-bars"></div>
         </div>
         <div class="summary reveal" data-stage="5" id="summary" style="margin-top:22px"></div>
@@ -527,7 +572,8 @@ button.ctl:focus-visible, a:focus-visible{outline:2px solid var(--accent); outli
     row.innerHTML = `<div class="edit">${esc(s.edit)}<span class="bardelta ${down?"down":"up"}">${down?"":"+"}${dv.toFixed(3)}</span></div>`+
       `<div class="bartrack"><div class="baseref" style="left:${basePct}%"></div>`+
       `<div class="barfill ${down?"down":"up"}" data-w="${(nv/maxv*100).toFixed(1)}"></div>`+
-      `<span class="barval">${nv.toFixed(3)}</span></div>`;
+      `<span class="barval">${nv.toFixed(3)}</span></div>`+
+      `<span class="rowcue">preview ▸</span>`;
     const pick=()=>projectTo(nv, s.edit, row);
     row.addEventListener("click", pick);
     row.addEventListener("keydown", e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); pick(); }});

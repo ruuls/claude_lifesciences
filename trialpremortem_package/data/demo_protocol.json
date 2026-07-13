@@ -1,0 +1,12 @@
+{
+  "cond": "Non-small cell lung cancer",
+  "phase": "PHASE2",
+  "n_incl": 12,
+  "n_excl": 22,
+  "age_span": 42,
+  "enroll_target": 40,
+  "n_arms": 2,
+  "endpoint": "Progression-free survival at 6 months",
+  "competition": 35,
+  "notes": "Excludes prior immunotherapy, any autoimmune disease, brain metastases, ECOG >1, age >75, prior malignancy within 5 years. Requires EGFR mutation-positive status. Single screening visit stacks CT, PET, ECG, biomarker panel, and tumor biopsy."
+}

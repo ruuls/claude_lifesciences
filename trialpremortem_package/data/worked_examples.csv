@@ -1,0 +1,44 @@
+NCT,Condition,Phase,v0_risk,flaw_caught,outcome,target,achieved,sunk_cost_usd,amendment_cost_usd
+NCT01638585,Diabetic Foot,Ph 3,0.67,7 more exclusion criteria than peer median (9),recruition number was not reached,211,34,1428000,535000
+NCT00627471,Type 2 Diabetes,Ph 4,0.59,8 more exclusion criteria than peer median (8),Low recruitment in spite of strategies implemented,200,9,324000,141000
+NCT04249596,Treatment Resistant Depression,Ph 4,0.51,4 more exclusion criteria than peer median (11),Inadequate recruitment,75,38,1368000,141000
+NCT02353949,Mild Cognitive Impairment,Ph 3,0.42,9 more exclusion criteria than peer median (8),Insufficient Recruitment,160,11,462000,535000
+NCT00904488,Acute Decompensated Heart Failure,Ph 4,0.4,16 exclusion criteria (high absolute count),Difficult recruitment,160,11,396000,141000
+NCT01962688,Heart Failure,NA,0.38,5 more exclusion criteria than peer median (6),low enrollment,138,37,1332000,141000
+NCT04899349,Breast Cancer,Ph 2,0.37,3 more exclusion criteria than peer median (5),Study was early terminated due to slow recruitment and emerging data s,132,2,72000,141000
+NCT00247975,Heart Failure,Ph 2;Ph 3,0.36,4 more exclusion criteria than peer median (8),Insufficient recruitment,144,36,1296000,300000
+NCT01652534,Parkinson's Disease,Ph 3,0.36,enrollment target 15 is 10% of peer median (150),Due to lack of recruitment,15,3,126000,535000
+NCT00938314,Stroke,Ph 2,0.35,15 more exclusion criteria than peer median (8),Slow Enrollment,128,96,3456000,141000
+NCT01847768,Asthma,NA,0.34,7 more exclusion criteria than peer median (4),Lack of Enrollment,30,2,72000,141000
+NCT01887353,Atrial Fibrillation,Ph 2,0.34,8 more exclusion criteria than peer median (7),Difficultly in enrolling,110,8,288000,141000
+NCT00852124,Asthma,Ph 1;Ph 2,0.33,enrollment target 20 is 56% of peer median (35),Inadequate recruitment,20,3,108000,141000
+NCT00839137,Asthma,,0.33,17 more exclusion criteria than peer median (4),Study proved difficult to recruit,105,13,468000,141000
+NCT05168306,"Diabetes Mellitus, Type 2",,0.31,19 more exclusion criteria than peer median (6),Slow enrollment and Study no longer required,300,43,1548000,141000
+NCT02175082,Parkinson's Disease,NA,0.31,5 more exclusion criteria than peer median (6),Terminated prior to enrollment goals due to difficulty with recruiting,24,12,432000,141000
+NCT03479424,Heart Failure With Reduced Ejection Fraction,,0.31,4 more exclusion criteria than peer median (7),Slow recruitment,500,30,1080000,141000
+NCT05137691,Obesity,NA,0.31,10 more exclusion criteria than peer median (6),Recruitment challenges,30,3,108000,141000
+NCT02844855,Alzheimer Disease,NA,0.31,10 more exclusion criteria than peer median (7),failure to recruit 83/99,99,83,2988000,141000
+NCT01978028,Heart Failure,Ph 4,0.31,12 more exclusion criteria than peer median (6),Slow recruitment,20,0,0,141000
+NCT02628847,Stroke,Ph 1,0.31,4 more exclusion criteria than peer median (7),Recruitment was problematic,20,11,330000,100000
+NCT03404713,Overweight and Obesity,NA,0.3,14 more exclusion criteria than peer median (6),Participant enrollment into stepped-care model was not feasible.,20,4,144000,141000
+NCT03237767,Cystic Fibrosis,NA,0.3,5 more exclusion criteria than peer median (8),Poor recruitment,16,2,72000,141000
+NCT03958630,Dementia,Ph 1,0.29,14 more exclusion criteria than peer median (7),PI closed the protocol due to low recruitment,200,13,390000,100000
+NCT04504045,"Diabetes Mellitus, Type 2",Ph 1,0.29,5 more exclusion criteria than peer median (6),"Slow recruitment due to COVID-19, the study was stopped when recruited",19,10,300000,100000
+NCT02720185,Breast Neoplasms,Ph 2,0.28,15 more exclusion criteria than peer median (5),Study terminated early due to COVID-19 related slow enrollment and fun,19,5,180000,141000
+NCT01244724,Major Depression,Ph 4,0.28,4 more exclusion criteria than peer median (10),Unable to recruit targeted #,20,26,936000,141000
+NCT00805493,Bipolar Disorder,Ph 2,0.27,4 more exclusion criteria than peer median (7),Insufficient recruitment of participants,80,6,216000,141000
+NCT00442351,Asthma,Ph 4,0.26,9 more exclusion criteria than peer median (8),Slow Enrollment,300,26,936000,141000
+NCT00449423,Acute Heart Failure,Ph 2,0.25,8 more exclusion criteria than peer median (3),due to slow recruitment,32,0,0,141000
+NCT01083563,Rheumatoid Arthritis,,0.25,20 more exclusion criteria than peer median (4),Funding has ended prior to complete enrollment,20,7,252000,141000
+NCT00559286,Arterial Hypertension,Ph 4,0.24,17 exclusion criteria (high absolute count),"logistic reasons, patients could not be recruited",40,0,0,141000
+NCT03682874,Delirium,,0.24,4 more exclusion criteria than peer median (15),Inability to recruit during COVID-19,25,5,180000,141000
+NCT01375166,Diabetic Retinopathy,,0.23,13 more exclusion criteria than peer median (7),not enough subjects recruited,48,1,36000,141000
+NCT00815347,Asthma,Ph 2,0.23,7 more exclusion criteria than peer median (6),Difficulty in recruitment.,20,11,396000,141000
+NCT03811769,Stroke,NA,0.23,17 more exclusion criteria than peer median (6),"Although the planned sample size was 450, enrollment was halted early ",450,335,12060000,141000
+NCT05942911,Rheumatoid Arthritis,Ph 2,0.22,16 more exclusion criteria than peer median (9),Recruitment challenges,128,20,720000,141000
+NCT00643162,Depression,NA,0.22,9 more exclusion criteria than peer median (7),Interim analysis indicated recruitment was necessary beyond study capa,40,17,612000,141000
+NCT02134795,Parkinson's Disease,NA,0.22,6 more exclusion criteria than peer median (6),The study aimed to enroll 10 patients but only enrolled 6 total. Inste,10,6,216000,141000
+NCT03971617,Parkinson Disease,Ph 2;Ph 3,0.21,5 more exclusion criteria than peer median (8),Insufficient enrollment to answer research question,70,2,72000,300000
+NCT03651531,Gestational Diabetes,Ph 3,0.21,4 more exclusion criteria than peer median (4),Trial halted early due to limited ability to recruit participants,160,1,42000,535000
+NCT05191472,Multiple Myeloma,Ph 2,0.21,36 more exclusion criteria than peer median (6),Slow Accrual,25,3,108000,141000
+NCT04798989,Alzheimer's Disease With Vascular Pathology,Ph 2,0.2,11 more exclusion criteria than peer median (6),Due to enrollment challenges,30,12,432000,141000

@@ -1,0 +1,27 @@
+{
+  "matched_cohort": {
+    "desc": "140 accrual-terminated vs 140 completed, matched on condition+phase. Removes base-rate confounds; isolates design-intrinsic signal.",
+    "N": 280,
+    "prevalence": 0.5,
+    "C0_base_rate_AUC": 0.5,
+    "C1_ML_AUC": 0.61,
+    "C2_agentic_AUC": 0.547,
+    "note_C0": "Base rate carries no within-pair signal by construction (matched design) \u2014 AUC\u22480.50. This is why the matched test is the hard one.",
+    "C1_ML_AUC_sd": 0.006,
+    "C1_method": "Nested 5-fold CV (10 seeds): ensemble weight alpha chosen on inner training folds only, evaluated on held-out outer folds. No eval-set tuning.",
+    "components": {
+      "structured_GBM_AUC": 0.603,
+      "text_NB_AUC": 0.585
+    }
+  },
+  "natural_distribution": {
+    "desc": "927 trials at natural 19% accrual-failure prevalence, v0-only, ESTIMATED enrollment only (leak-free). Reflects deployment reality.",
+    "N": 927,
+    "prevalence": 0.194,
+    "AUC": 0.669,
+    "AP": 0.361,
+    "AUC_no_enroll": 0.644,
+    "flag_fail_topquartile": 0.428,
+    "flag_completed_topquartile": 0.207
+  }
+}

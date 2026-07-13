@@ -1,0 +1,30 @@
+{
+  "baseline_risk": 0.345,
+  "scenarios": [
+    {
+      "edit": "Combined: cut exclusions to median + 1.5x enrollment buffer",
+      "new_risk": 0.148,
+      "delta": -0.197
+    },
+    {
+      "edit": "Cut exclusions from 22 to peer median",
+      "new_risk": 0.185,
+      "delta": -0.16
+    },
+    {
+      "edit": "Raise enrollment target from 40 to 60 (attrition buffer)",
+      "new_risk": 0.276,
+      "delta": -0.069
+    },
+    {
+      "edit": "Cut exclusions from 22 to 17 (drop lowest-value gates)",
+      "new_risk": 0.359,
+      "delta": 0.014
+    },
+    {
+      "edit": "Widen age band by 15 years (span 42->57)",
+      "new_risk": 0.398,
+      "delta": 0.053
+    }
+  ]
+}

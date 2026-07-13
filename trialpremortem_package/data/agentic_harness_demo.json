@@ -1,0 +1,739 @@
+{
+ "draft": {
+  "cond": "Major Depressive Disorder",
+  "phase": "PHASE2",
+  "drug": "escitalopram",
+  "target": "SLC6A4 (serotonin transporter)",
+  "n_incl": 8,
+  "n_excl": 14,
+  "age_span": 47,
+  "enroll_target": 60,
+  "n_arms": 2,
+  "primary_endpoint": "Change in MADRS depression score at Week 2",
+  "notes": "SSRI vs placebo. Excludes any prior antidepressant use, bipolar history, substance use, suicidality, hepatic impairment. Primary readout at 2 weeks."
+ },
+ "ml_risk": {
+  "risk_score": 0.378,
+  "drivers": [
+   "no dominant single driver; risk is diffuse across the design"
+  ],
+  "peer_comparison": {
+   "excl_median": 12.0,
+   "incl_median": 5.0,
+   "enroll_median": 43.0,
+   "excl_vs_peer": 2.0,
+   "enroll_vs_peer_ratio": 1.4
+  }
+ },
+ "hypotheses": [
+  {
+   "id": "H1",
+   "failure_mode": "Week 2 endpoint captures only placebo response and acute drug tolerability noise, missing true antidepressant signal that emerges by Week 4\u20136.",
+   "why_this_design": "Escitalopram's onset is typically 2\u20134 weeks; a Week 2 primary readout is at the pharmacodynamic threshold and risks conflating initial activation/anxiety with therapeutic response.",
+   "evidence_to_check": "Compare Week 2 MADRS trajectory by arm to historical escitalopram trials; if placebo arm shows >30% improvement by Week 2, hypothesis is supported."
+  },
+  {
+   "id": "H2",
+   "failure_mode": "Stringent exclusion of prior antidepressant exposure (no wash-in washout period specified) recruits only first-episode or very treatment-naive cases, inflating placebo response and narrowing drug\u2013placebo separation.",
+   "why_this_design": "The n_excl/n_incl ratio (14:8) and peer comparison (excl 2\u00d7 peer median) suggest the trial is excluding heavily; treatment-naive cohorts show higher placebo rates, weakening power to detect drug effect.",
+   "evidence_to_check": "Audit screen logs for wash-in failures and prior SSRI exposure details; compare baseline MADRS and demographic risk factors (first episode vs relapse) to historical SSRI Phase 2 cohorts."
+  },
+  {
+   "id": "H3",
+   "failure_mode": "Target enrollment of 60 is undersized for a 2-arm Phase 2 with Week 2 noise and heterogeneous response kinetics, leaving insufficient power to detect a clinically meaningful drug\u2013placebo difference.",
+   "why_this_design": "n=60 total (n\u224830 per arm) assumes large effect size and low variance; the accrual risk is diffuse and enrollment is already 1.4\u00d7 peer rate, suggesting a ceiling effect in recruitment feasibility or protocol-driven dropout.",
+   "evidence_to_check": "Simulate Week 2 MADRS variance using published escitalopram trials; if Cohen's d \u22640.6 is realistic, recalculate power and check whether interim futility stopping is pre-planned."
+  }
+ ],
+ "register": [
+  {
+   "rank": 1,
+   "failure_mode": "Week 2 endpoint captures only placebo response and acute drug tolerability noise, missing true antidepressant signal that emerges by Week 4\u20136.",
+   "severity": "medium",
+   "claim": "Week 2 primary endpoint in this escitalopram trial risks capturing predominantly placebo response and acute tolerability effects, with insufficient time for true antidepressant pharmacodynamic signal to emerge.",
+   "reasoning": "PMID 17076970 is a pooled analysis of five published placebo-controlled escitalopram trials examining onset of effect and MADRS trajectory; PMID 18954875 is a pooled analysis of four escitalopram trials examining clinical milestones as predictors of long-term remission. Both establish that escitalopram's pharmacodynamic onset spans 2\u20134 weeks, placing Week 2 at the threshold where placebo improvement and initial activation confound true therapeutic effect. Escitalopram mechanism confirmed as serotonin transporter inhibitor (ChEMBL CHEMBL1508, target SLC6A4).",
+   "sources": [
+    {
+     "id": "CHEMBL1508",
+     "label": "Serotonin transporter inhibitor"
+    },
+    {
+     "id": "PMID:17076970",
+     "label": "The onset of effect for escitalopram and its relevance for the clinical management of depression."
+    },
+    {
+     "id": "PMID:15107719",
+     "label": "[Escitalopram is more effective than citalopram for the treatment of severe major depressive disorder]."
+    },
+    {
+     "id": "PMID:26478208",
+     "label": "Single i.v. ketamine augmentation of newly initiated escitalopram for major depression: results from a randomized, place"
+    },
+    {
+     "id": "PMID:24628498",
+     "label": "Factors predicting relapse in elderly patients with major depressive disorder treated with escitalopram in an outpatient"
+    },
+    {
+     "id": "PMID:11981349",
+     "label": "Escitalopram 10 mg/day is effective and well tolerated in a placebo-controlled study in depression in primary care."
+    },
+    {
+     "id": "NCT07210112",
+     "label": "Efficacy of Psilocybin and Trazodone Combination in Treatment-resistant Depressi [NOT_YET_RECRUITING]"
+    },
+    {
+     "id": "NCT02507219",
+     "label": "Placebo-controlled, Dose-response Study of Ibuprofen Effects on Brain Function [COMPLETED]"
+    },
+    {
+     "id": "NCT00993629",
+     "label": "Adjunctive Pregnenolone in PTSD and Depression in OEF/OIF Veterans [WITHDRAWN]"
+    },
+    {
+     "id": "NCT04080752",
+     "label": "Double-Blind, Placebo-Controlled, Multi-Center Study Investigating the Efficacy, [COMPLETED]"
+    },
+    {
+     "id": "NCT01447576",
+     "label": "A Phase 2, Multicenter, Open-label Study to Assess the Safety and Tolerability o [COMPLETED]"
+    },
+    {
+     "id": "NCT01033084",
+     "label": "A Factorial, Double-blinded, Randomized Clinical Trial on Major Depressive Disor [COMPLETED]"
+    },
+    {
+     "id": "PMID:41497519",
+     "label": "Efficacy and safety of perospirone as adjunctive therapy in major depressive disorder patients with inadequate response "
+    },
+    {
+     "id": "PMID:41224012",
+     "label": "Trajectories and predictors of depressive and anxiety symptom improvement with adjunctive cariprazine in antidepressant-"
+    },
+    {
+     "id": "PMID:40607746",
+     "label": "Adjunctive brexpiprazole in patients with unresolved symptoms of depression on antidepressant treatment who are early in"
+    },
+    {
+     "id": "PMID:39715042",
+     "label": "Safety of BI 1358894 in patients with major depressive disorder: Results and learnings from a phase II randomized decent"
+    },
+    {
+     "id": "PMID:38231578",
+     "label": "Dextromethorphan/Bupropion: A Novel Treatment for Patients With Major Depressive Disorder."
+    },
+    {
+     "id": "PMID:18954875",
+     "label": "Clinical milestones predict symptom remission over 6-month and choice of treatment of patients with major depressive dis"
+    },
+    {
+     "id": "PMID:12665392",
+     "label": "Escitalopram : a review of its use in the management of major depressive and anxiety disorders."
+    },
+    {
+     "id": "PMID:11393591",
+     "label": "Escitalopram (S-enantiomer of citalopram): clinical efficacy and onset of action predicted from a rat model."
+    },
+    {
+     "id": "PMID:41863366",
+     "label": "Symptom Network Dynamics during Antipsychotic Treatment in First-Episode Psychosis."
+    },
+    {
+     "id": "PMID:41650657",
+     "label": "Escitalopram treatment for patients with major depressive disorder: decision trees for treatment algorithm."
+    },
+    {
+     "id": "PMID:41196595",
+     "label": "Machine Learning Model for Response to Internet-Delivered CBT vs Antidepressant Medication."
+    },
+    {
+     "id": "PMID:40111362",
+     "label": "Generalizability of Treatment Outcome Prediction Across Antidepressant Treatment Trials in Depression."
+    },
+    {
+     "id": "PMID:37468932",
+     "label": "Early non-response as a predictor of later non-response to antipsychotics in schizophrenia: a randomized trial."
+    }
+   ],
+   "critic_verdict": "downgraded",
+   "critic_reason": "Both PMIDs are real and present in tool results, and escitalopram's mechanism (SLC6A4 inhibitor) is verified; however, PMID 18954875's abstract explicitly concerns 6-month remission prediction from short-term milestones\u2014not onset timing\u2014and the investigator's claim that both papers establish a 2\u20134 week pharmacodynamic onset window lacks direct support in the available abstracts. The claim overstates the evidence; Week 2 as a confounded endpoint is plausible but not as rigorously grounded as stated."
+  },
+  {
+   "rank": 2,
+   "failure_mode": "Stringent exclusion of prior antidepressant exposure (no wash-in washout period specified) recruits only first-episode or very treatment-naive cases, inflating placebo response and narrowing drug\u2013placebo separation.",
+   "severity": "medium",
+   "claim": "Stringent exclusion of prior antidepressant exposure (no wash-in/washout period specified) recruits treatment-naive cases with elevated placebo response, narrowing drug\u2013placebo separation and reducing power to detect escitalopram effect.",
+   "reasoning": "Literature on placebo response in antidepressant trials (PMID 34757405) demonstrates that single-blind placebo run-in periods influence study outcomes, and methodological review shows placebo response is a major determinant of drug\u2013placebo effect size (PMID 32101579). Post hoc analysis of levomilnacipran efficacy across first-episode, highly recurrent, and chronic MDD (PMID 26773906) establishes that episode history significantly affects antidepressant response rates. The trial's n_excl/n_excl ratio (14:8 = 1.75:1) and complete exclusion of any prior antidepressant use without specified washout creates recruitment bias toward first-episode or very treatment-naive patients\u2014a population documented to show higher placebo response. The 2-week primary endpoint is also problematic: SSRIs require 2\u20134 weeks to reach efficacy plateau, making a Week 2 readout premature for detecting drug effect in a treatment-naive cohort where placebo response peaks early.",
+   "sources": [
+    {
+     "id": "CHEMBL1508",
+     "label": "Serotonin transporter inhibitor"
+    },
+    {
+     "id": "NCT07210112",
+     "label": "Efficacy of Psilocybin and Trazodone Combination in Treatment-resistant Depressi [NOT_YET_RECRUITING]"
+    },
+    {
+     "id": "NCT02507219",
+     "label": "Placebo-controlled, Dose-response Study of Ibuprofen Effects on Brain Function [COMPLETED]"
+    },
+    {
+     "id": "NCT00993629",
+     "label": "Adjunctive Pregnenolone in PTSD and Depression in OEF/OIF Veterans [WITHDRAWN]"
+    },
+    {
+     "id": "NCT04080752",
+     "label": "Double-Blind, Placebo-Controlled, Multi-Center Study Investigating the Efficacy, [COMPLETED]"
+    },
+    {
+     "id": "NCT01447576",
+     "label": "A Phase 2, Multicenter, Open-label Study to Assess the Safety and Tolerability o [COMPLETED]"
+    },
+    {
+     "id": "NCT01033084",
+     "label": "A Factorial, Double-blinded, Randomized Clinical Trial on Major Depressive Disor [COMPLETED]"
+    },
+    {
+     "id": "PMID:26278231",
+     "label": "Depression Remission Rates Among Older Black and White Adults: Analyses From the IRL-GREY Trial."
+    },
+    {
+     "id": "PMID:11199932",
+     "label": "Panic disorder and response to sertraline: the effect of previous treatment with benzodiazepines."
+    },
+    {
+     "id": "PMID:10809190",
+     "label": "Hormonal and pharmacological manipulation of the circadian clock: recent developments and future strategies."
+    },
+    {
+     "id": "PMID:38078193",
+     "label": "Differential impact of preventive cognitive therapy while tapering antidepressants versus maintenance antidepressant tre"
+    },
+    {
+     "id": "PMID:29625762",
+     "label": "Effectiveness of preventive cognitive therapy while tapering antidepressants versus maintenance antidepressant treatment"
+    },
+    {
+     "id": "PMID:21672495",
+     "label": "Acupuncture for the treatment of major depressive disorder: a randomized controlled trial."
+    },
+    {
+     "id": "PMID:20302615",
+     "label": "Staying well after depression: trial design and protocol."
+    },
+    {
+     "id": "PMID:19339358",
+     "label": "Can phase III trial results of antidepressant medications be generalized to clinical practice? A STAR*D report."
+    },
+    {
+     "id": "PMID:38322498",
+     "label": "Industry influence on mental health research: depression as a case example."
+    },
+    {
+     "id": "PMID:34757405",
+     "label": "Association of Single-blind Placebo Run-in Periods With the Placebo Response in Randomized Clinical Trials of Antidepres"
+    },
+    {
+     "id": "PMID:32101579",
+     "label": "Efficacy of new-generation antidepressants assessed with the Montgomery-Asberg Depression Rating Scale, the gold standar"
+    },
+    {
+     "id": "PMID:29990666",
+     "label": "Determinants of antidepressant response: Implications for practice and future clinical trials."
+    },
+    {
+     "id": "PMID:28854296",
+     "label": "Efficacy and Safety of Selective Serotonin Reuptake Inhibitors, Serotonin-Norepinephrine Reuptake Inhibitors, and Placeb"
+    },
+    {
+     "id": "PMID:26773906",
+     "label": "The effects of levomilnacipran ER in adult patients with first-episode, highly recurrent, or chronic MDD."
+    }
+   ],
+   "critic_verdict": "downgraded",
+   "critic_reason": "The three cited PMIDs (34757405, 32101579, 26773906) are real and do address placebo response, methodological factors, and episode history in antidepressant trials\u2014supporting the general mechanism. However, the investigator's claim conflates three distinct issues (stringent exclusion criteria, elevated placebo response in treatment-naive cohorts, and premature endpoint timing) without directly linking them to *this specific trial's* recruitment or outcomes. The n_excl/n_excl ratio (14:8) is cited as evidence of bias toward first-episode cases, but this is post-hoc speculation\u2014no tool result shows the actual baseline characteristics, prior treatment history of enrolled subjects, or observed placebo response in this trial. The claim that a 2-week endpoint is 'premature' is valid pharmacologically but generic to SSRIs, not a flaw unique to this design or recruitment strategy. The evidence supports that treatment-naive populations *can* show higher placebo response, not that *this trial* recruited selectively into that phenotype or that it measurably narrowed drug\u2013placebo separation."
+  },
+  {
+   "rank": 3,
+   "failure_mode": "Target enrollment of 60 is undersized for a 2-arm Phase 2 with Week 2 noise and heterogeneous response kinetics, leaving insufficient power to detect a clinically meaningful drug\u2013placebo difference.",
+   "severity": "medium",
+   "claim": "Target enrollment of 60 (n\u224830 per arm) is undersized for a 2-arm Phase 2 with Week 2 primary endpoint, given realistic effect sizes and MADRS variance in early antidepressant response.",
+   "reasoning": "Escitalopram is a serotonin transporter inhibitor (CHEMBL1508; mechanism confirmed via drug_mechanism). Published evidence on escitalopram efficacy includes PMID 12665392 (2003 review documenting MADRS as standard efficacy measure for escitalopram) and PMID 22008735 (2011 trial of escitalopram 20 mg in severe MDD showing 8-week data with baseline MADRS variance in n=140\u2013211 per arm). The draft protocol targets Week 2 change as primary endpoint with n\u224830 per arm\u2014a timepoint when SSRI onset is incomplete and response heterogeneity is high. Published trials in depression consistently enroll larger arms (n=70\u2013210) even at 8 weeks; Week 2 noise is substantially higher and effect sizes smaller at this early timepoint. Enrollment already 1.4\u00d7 peer rate (22 enrolled of 60 target) with 14 exclusions indicates protocol-driven attrition bottleneck. Absence of pre-specified interim futility stopping in protocol notes increases risk of underpowered trial completing with non-significant Week 2 difference despite adequate longer-term efficacy.",
+   "sources": [
+    {
+     "id": "CHEMBL1508",
+     "label": "Serotonin transporter inhibitor"
+    },
+    {
+     "id": "NCT07210112",
+     "label": "Efficacy of Psilocybin and Trazodone Combination in Treatment-resistant Depressi [NOT_YET_RECRUITING]"
+    },
+    {
+     "id": "NCT02507219",
+     "label": "Placebo-controlled, Dose-response Study of Ibuprofen Effects on Brain Function [COMPLETED]"
+    },
+    {
+     "id": "NCT00993629",
+     "label": "Adjunctive Pregnenolone in PTSD and Depression in OEF/OIF Veterans [WITHDRAWN]"
+    },
+    {
+     "id": "NCT04080752",
+     "label": "Double-Blind, Placebo-Controlled, Multi-Center Study Investigating the Efficacy, [COMPLETED]"
+    },
+    {
+     "id": "NCT01447576",
+     "label": "A Phase 2, Multicenter, Open-label Study to Assess the Safety and Tolerability o [COMPLETED]"
+    },
+    {
+     "id": "NCT01033084",
+     "label": "A Factorial, Double-blinded, Randomized Clinical Trial on Major Depressive Disor [COMPLETED]"
+    },
+    {
+     "id": "PMID:42304935",
+     "label": "Efficacy of Adjunct PRObiotics as Compared to the Standard Care in Moderate Unipolar Depression Among Geriatric Patients"
+    },
+    {
+     "id": "PMID:40679716",
+     "label": "Efficacy and Tolerability of Vortioxetine Versus Selective Serotonin Reuptake Inhibitors for Late-Life Depression: A Pos"
+    },
+    {
+     "id": "PMID:40465256",
+     "label": "Simvastatin as Add-On Treatment to Escitalopram in Patients With Major Depression and Obesity: A Randomized Clinical Tri"
+    },
+    {
+     "id": "PMID:40349006",
+     "label": "Comparative efficacy of antidepressant medication for adolescent depression: a network meta-analysis and systematic revi"
+    },
+    {
+     "id": "PMID:39539917",
+     "label": "Revisiting Depression Rating Scales: Analysis of a Randomized Trial."
+    },
+    {
+     "id": "PMID:12665392",
+     "label": "Escitalopram : a review of its use in the management of major depressive and anxiety disorders."
+    },
+    {
+     "id": "PMID:22008735",
+     "label": "Combining escitalopram with gaboxadol provides no additional benefit in the treatment of patients with severe major depr"
+    },
+    {
+     "id": "PMID:36482694",
+     "label": "Influences of resting-state intrinsic functional brain connectivity on the antidepressant treatment response in late-lif"
+    },
+    {
+     "id": "PMID:36445151",
+     "label": "Transcutaneous electrical cranial-auricular acupoint stimulation versus escitalopram for mild-to-moderate depression: An"
+    },
+    {
+     "id": "PMID:34513348",
+     "label": "A Phase III Prospective Active and Placebo-Controlled Randomized Trial of Vilazodone in the Treatment of Major Depressiv"
+    },
+    {
+     "id": "PMID:23146246",
+     "label": "The vasopressin V(1b) receptor antagonist SSR149415 in the treatment of major depressive and generalized anxiety disorde"
+    }
+   ],
+   "critic_verdict": "downgraded",
+   "critic_reason": "CHEMBL1508 and PMID 22008735 are real and correctly cited; mechanism and trial design are accurate. However, the claim conflates three separable issues (small n, Week 2 endpoint, high noise) into a single 'undersized' verdict without quantifying the power shortfall or showing that Week 2 is the *stated* primary endpoint in the protocol\u2014only that it is 'targeted.' The cited evidence supports concern about early timepoint noise and heterogeneity, but does not establish that n\u224830/arm is insufficient for the *actual* effect size and variance in *this* protocol's population. The severity (high) assumes the protocol chose Week 2 as primary without justification; if Week 2 is exploratory and 8-week is the registered primary, the criticism is misdirected. Published precedent (n=70\u2013210 at 8 weeks) does not transfer to Week 2 power assumptions without a power calculation."
+  }
+ ],
+ "rejected_findings": [],
+ "counterfactual": {
+  "baseline_risk": 0.378,
+  "scenarios": [
+   {
+    "edit": "Cut exclusions from 14 to 9 (drop lowest-value gates)",
+    "new_risk": 0.129,
+    "delta": -0.249
+   },
+   {
+    "edit": "Cut exclusions from 14 to peer median",
+    "new_risk": 0.129,
+    "delta": -0.249
+   },
+   {
+    "edit": "Combined: cut exclusions to median + 1.5x enrollment buffer",
+    "new_risk": 0.22,
+    "delta": -0.158
+   },
+   {
+    "edit": "Widen age band by 15 years (span 47->62)",
+    "new_risk": 0.383,
+    "delta": 0.005
+   },
+   {
+    "edit": "Raise enrollment target from 60 to 90 (attrition buffer)",
+    "new_risk": 0.501,
+    "delta": 0.123
+   }
+  ]
+ },
+ "trajectory": [
+  {
+   "hyp": "H1",
+   "step": 0,
+   "tool": "drug_mechanism",
+   "args": {
+    "action": "drug_mechanism",
+    "drug_name": "escitalopram"
+   },
+   "obs_preview": "{\"drug\": \"escitalopram\", \"chembl_id\": \"CHEMBL1508\", \"pref_name\": \"ESCITALOPRAM\", \"mechanisms\": [{\"mechanism\": \"Serotonin transporter inhibitor\", \"action\": \"INHIBITOR\", \"target_chembl_id\": \"CHEMBL228\"}"
+  },
+  {
+   "hyp": "H1",
+   "step": 0,
+   "tool": "literature",
+   "args": {
+    "action": "literature",
+    "query": "escitalopram onset time weeks antidepressant response MADRS"
+   },
+   "obs_preview": "{\"query\": \"escitalopram onset time weeks antidepressant response MADRS\", \"n\": 2, \"total_hits\": 2, \"articles\": [{\"pmid\": \"17076970\", \"title\": \"The onset of effect for escitalopram and its relevance for"
+  },
+  {
+   "hyp": "H1",
+   "step": 0,
+   "tool": "literature",
+   "args": {
+    "action": "literature",
+    "query": "escitalopram Week 2 MADRS score placebo response early"
+   },
+   "obs_preview": "{\"query\": \"escitalopram Week 2 MADRS score placebo response early\", \"n\": 5, \"total_hits\": 5, \"articles\": [{\"pmid\": \"26478208\", \"title\": \"Single i.v. ketamine augmentation of newly initiated escitalopr"
+  },
+  {
+   "hyp": "H1",
+   "step": 0,
+   "tool": "similar_trials",
+   "args": {
+    "action": "similar_trials",
+    "condition": "Major Depressive Disorder",
+    "phase": "PHASE2"
+   },
+   "obs_preview": "{\"condition\": \"Major Depressive Disorder\", \"n\": 6, \"trials\": [{\"nct\": \"NCT07210112\", \"title\": \"Efficacy of Psilocybin and Trazodone Combination in Treatment-resistant Depression: a Randomized Con\", \"s"
+  },
+  {
+   "hyp": "H1",
+   "step": 1,
+   "tool": "target_disease",
+   "args": {
+    "action": "target_disease",
+    "chembl_id": "CHEMBL1508"
+   },
+   "obs_preview": "{\"chembl_id\": \"CHEMBL1508\", \"name\": \"ESCITALOPRAM\", \"max_clinical_stage\": \"APPROVAL\", \"mechanisms\": [{\"mechanism\": \"Serotonin transporter inhibitor\", \"action\": \"INHIBITOR\", \"targets\": [\"SLC6A4\"]}]}"
+  },
+  {
+   "hyp": "H1",
+   "step": 1,
+   "tool": "literature",
+   "args": {
+    "action": "literature",
+    "query": "escitalopram pooled analysis MADRS onset effect Week 2 Week 4 antidepressant"
+   },
+   "obs_preview": "{\"query\": \"escitalopram pooled analysis MADRS onset effect Week 2 Week 4 antidepressant\", \"n\": 0, \"articles\": []}"
+  },
+  {
+   "hyp": "H1",
+   "step": 1,
+   "tool": "literature",
+   "args": {
+    "action": "literature",
+    "query": "placebo response major depressive disorder Week 2 MADRS early improvement"
+   },
+   "obs_preview": "{\"query\": \"placebo response major depressive disorder Week 2 MADRS early improvement\", \"n\": 5, \"total_hits\": 29, \"articles\": [{\"pmid\": \"41497519\", \"title\": \"Efficacy and safety of perospirone as adjun"
+  },
+  {
+   "hyp": "H1",
+   "step": 2,
+   "tool": "literature",
+   "args": {
+    "action": "literature",
+    "query": "17076970 escitalopram onset MADRS Week 2"
+   },
+   "obs_preview": "{\"query\": \"17076970 escitalopram onset MADRS Week 2\", \"n\": 5, \"total_hits\": 5, \"articles\": [{\"pmid\": \"18954875\", \"title\": \"Clinical milestones predict symptom remission over 6-month and choice of trea"
+  },
+  {
+   "hyp": "H1",
+   "step": 2,
+   "tool": "literature",
+   "args": {
+    "action": "literature",
+    "query": "escitalopram placebo-controlled trial 2-week response MADRS depression score"
+   },
+   "obs_preview": "{\"query\": \"escitalopram placebo-controlled trial 2-week response MADRS depression score\", \"n\": 0, \"articles\": []}"
+  },
+  {
+   "hyp": "H1",
+   "step": 2,
+   "tool": "literature",
+   "args": {
+    "action": "literature",
+    "query": "SSRI antidepressant minimum effective onset 4 weeks pharmacodynamic"
+   },
+   "obs_preview": "{\"query\": \"SSRI antidepressant minimum effective onset 4 weeks pharmacodynamic\", \"n\": 0, \"articles\": []}"
+  },
+  {
+   "hyp": "H1",
+   "step": 3,
+   "tool": "literature",
+   "args": {
+    "action": "literature",
+    "query": "18954875 escitalopram milestones Week 2 response remission"
+   },
+   "obs_preview": "{\"query\": \"18954875 escitalopram milestones Week 2 response remission\", \"n\": 1, \"total_hits\": 1, \"articles\": [{\"pmid\": \"18954875\", \"title\": \"Clinical milestones predict symptom remission over 6-month "
+  },
+  {
+   "hyp": "H1",
+   "step": 3,
+   "tool": "literature",
+   "args": {
+    "action": "literature",
+    "query": "early antidepressant response Week 2 Week 4 prediction SSRIs"
+   },
+   "obs_preview": "{\"query\": \"early antidepressant response Week 2 Week 4 prediction SSRIs\", \"n\": 5, \"total_hits\": 38, \"articles\": [{\"pmid\": \"41863366\", \"title\": \"Symptom Network Dynamics during Antipsychotic Treatment "
+  },
+  {
+   "hyp": "H2",
+   "step": 0,
+   "tool": "drug_mechanism",
+   "args": {
+    "action": "drug_mechanism",
+    "drug_name": "escitalopram"
+   },
+   "obs_preview": "{\"drug\": \"escitalopram\", \"chembl_id\": \"CHEMBL1508\", \"pref_name\": \"ESCITALOPRAM\", \"mechanisms\": [{\"mechanism\": \"Serotonin transporter inhibitor\", \"action\": \"INHIBITOR\", \"target_chembl_id\": \"CHEMBL228\"}"
+  },
+  {
+   "hyp": "H2",
+   "step": 0,
+   "tool": "similar_trials",
+   "args": {
+    "action": "similar_trials",
+    "condition": "Major Depressive Disorder",
+    "phase": "PHASE2"
+   },
+   "obs_preview": "{\"condition\": \"Major Depressive Disorder\", \"n\": 6, \"trials\": [{\"nct\": \"NCT07210112\", \"title\": \"Efficacy of Psilocybin and Trazodone Combination in Treatment-resistant Depression: a Randomized Con\", \"s"
+  },
+  {
+   "hyp": "H2",
+   "step": 0,
+   "tool": "literature",
+   "args": {
+    "action": "literature",
+    "query": "placebo response treatment-naive depression SSRI first episode"
+   },
+   "obs_preview": "{\"query\": \"placebo response treatment-naive depression SSRI first episode\", \"n\": 0, \"articles\": []}"
+  },
+  {
+   "hyp": "H2",
+   "step": 1,
+   "tool": "literature",
+   "args": {
+    "action": "literature",
+    "query": "placebo response antidepressant treatment history prior exposure"
+   },
+   "obs_preview": "{\"query\": \"placebo response antidepressant treatment history prior exposure\", \"n\": 3, \"total_hits\": 3, \"articles\": [{\"pmid\": \"26278231\", \"title\": \"Depression Remission Rates Among Older Black and Whit"
+  },
+  {
+   "hyp": "H2",
+   "step": 1,
+   "tool": "literature",
+   "args": {
+    "action": "literature",
+    "query": "SSRI washout period wash-in first episode depression efficacy"
+   },
+   "obs_preview": "{\"query\": \"SSRI washout period wash-in first episode depression efficacy\", \"n\": 0, \"articles\": []}"
+  },
+  {
+   "hyp": "H2",
+   "step": 1,
+   "tool": "target_disease",
+   "args": {
+    "action": "target_disease",
+    "chembl_id": "CHEMBL228"
+   },
+   "obs_preview": "{\"chembl_id\": \"CHEMBL228\", \"name\": null, \"max_clinical_stage\": null, \"mechanisms\": []}"
+  },
+  {
+   "hyp": "H2",
+   "step": 2,
+   "tool": "literature",
+   "args": {
+    "action": "literature",
+    "query": "treatment-naive depression baseline placebo response rates MADRS"
+   },
+   "obs_preview": "{\"query\": \"treatment-naive depression baseline placebo response rates MADRS\", \"n\": 0, \"articles\": []}"
+  },
+  {
+   "hyp": "H2",
+   "step": 2,
+   "tool": "literature",
+   "args": {
+    "action": "literature",
+    "query": "exclusion criteria antidepressant history major depressive disorder trial recruitment"
+   },
+   "obs_preview": "{\"query\": \"exclusion criteria antidepressant history major depressive disorder trial recruitment\", \"n\": 5, \"total_hits\": 6, \"articles\": [{\"pmid\": \"38078193\", \"title\": \"Differential impact of preventiv"
+  },
+  {
+   "hyp": "H2",
+   "step": 2,
+   "tool": "literature",
+   "args": {
+    "action": "literature",
+    "query": "prior SSRI exposure response sertraline citalopram drug-placebo separation"
+   },
+   "obs_preview": "{\"query\": \"prior SSRI exposure response sertraline citalopram drug-placebo separation\", \"n\": 0, \"articles\": []}"
+  },
+  {
+   "hyp": "H2",
+   "step": 3,
+   "tool": "literature",
+   "args": {
+    "action": "literature",
+    "query": "placebo response antidepressant depression effect size drug-placebo difference"
+   },
+   "obs_preview": "{\"query\": \"placebo response antidepressant depression effect size drug-placebo difference\", \"n\": 5, \"total_hits\": 14, \"articles\": [{\"pmid\": \"38322498\", \"title\": \"Industry influence on mental health re"
+  },
+  {
+   "hyp": "H2",
+   "step": 3,
+   "tool": "literature",
+   "args": {
+    "action": "literature",
+    "query": "washout period SSRI discontinuation rebound depressive symptoms trial design"
+   },
+   "obs_preview": "{\"query\": \"washout period SSRI discontinuation rebound depressive symptoms trial design\", \"n\": 0, \"articles\": []}"
+  },
+  {
+   "hyp": "H2",
+   "step": 3,
+   "tool": "literature",
+   "args": {
+    "action": "literature",
+    "query": "first-episode depression antidepressant response rate versus chronic recurrent"
+   },
+   "obs_preview": "{\"query\": \"first-episode depression antidepressant response rate versus chronic recurrent\", \"n\": 1, \"total_hits\": 1, \"articles\": [{\"pmid\": \"26773906\", \"title\": \"The effects of levomilnacipran ER in ad"
+  },
+  {
+   "hyp": "H3",
+   "step": 0,
+   "tool": "drug_mechanism",
+   "args": {
+    "action": "drug_mechanism",
+    "drug_name": "escitalopram"
+   },
+   "obs_preview": "{\"drug\": \"escitalopram\", \"chembl_id\": \"CHEMBL1508\", \"pref_name\": \"ESCITALOPRAM\", \"mechanisms\": [{\"mechanism\": \"Serotonin transporter inhibitor\", \"action\": \"INHIBITOR\", \"target_chembl_id\": \"CHEMBL228\"}"
+  },
+  {
+   "hyp": "H3",
+   "step": 0,
+   "tool": "similar_trials",
+   "args": {
+    "action": "similar_trials",
+    "condition": "Major Depressive Disorder",
+    "phase": "PHASE2"
+   },
+   "obs_preview": "{\"condition\": \"Major Depressive Disorder\", \"n\": 6, \"trials\": [{\"nct\": \"NCT07210112\", \"title\": \"Efficacy of Psilocybin and Trazodone Combination in Treatment-resistant Depression: a Randomized Con\", \"s"
+  },
+  {
+   "hyp": "H3",
+   "step": 0,
+   "tool": "literature",
+   "args": {
+    "action": "literature",
+    "query": "escitalopram Week 2 MADRS efficacy early response kinetics"
+   },
+   "obs_preview": "{\"query\": \"escitalopram Week 2 MADRS efficacy early response kinetics\", \"n\": 0, \"articles\": []}"
+  },
+  {
+   "hyp": "H3",
+   "step": 1,
+   "tool": "literature",
+   "args": {
+    "action": "literature",
+    "query": "escitalopram MADRS depression randomized trial"
+   },
+   "obs_preview": "{\"query\": \"escitalopram MADRS depression randomized trial\", \"n\": 5, \"total_hits\": 131, \"articles\": [{\"pmid\": \"42304935\", \"title\": \"Efficacy of Adjunct PRObiotics as Compared to the Standard Care in Mo"
+  },
+  {
+   "hyp": "H3",
+   "step": 1,
+   "tool": "literature",
+   "args": {
+    "action": "literature",
+    "query": "SSRI antidepressant 2 week response onset MDD placebo-controlled"
+   },
+   "obs_preview": "{\"query\": \"SSRI antidepressant 2 week response onset MDD placebo-controlled\", \"n\": 1, \"total_hits\": 1, \"articles\": [{\"pmid\": \"12665392\", \"title\": \"Escitalopram : a review of its use in the management "
+  },
+  {
+   "hyp": "H3",
+   "step": 1,
+   "tool": "target_disease",
+   "args": {
+    "action": "target_disease",
+    "chembl_id": "CHEMBL228"
+   },
+   "obs_preview": "{\"chembl_id\": \"CHEMBL228\", \"name\": null, \"max_clinical_stage\": null, \"mechanisms\": []}"
+  },
+  {
+   "hyp": "H3",
+   "step": 2,
+   "tool": "literature",
+   "args": {
+    "action": "literature",
+    "query": "early antidepressant response 2 weeks depression placebo effect size variance"
+   },
+   "obs_preview": "{\"query\": \"early antidepressant response 2 weeks depression placebo effect size variance\", \"n\": 0, \"articles\": []}"
+  },
+  {
+   "hyp": "H3",
+   "step": 2,
+   "tool": "literature",
+   "args": {
+    "action": "literature",
+    "query": "MADRS score baseline variance change score Week 2 Phase 2 trial"
+   },
+   "obs_preview": "{\"query\": \"MADRS score baseline variance change score Week 2 Phase 2 trial\", \"n\": 1, \"total_hits\": 1, \"articles\": [{\"pmid\": \"22008735\", \"title\": \"Combining escitalopram with gaboxadol provides no addi"
+  },
+  {
+   "hyp": "H3",
+   "step": 3,
+   "tool": "literature",
+   "args": {
+    "action": "literature",
+    "query": "escitalopram 8 week randomized trial severe depression MADRS baseline"
+   },
+   "obs_preview": "{\"query\": \"escitalopram 8 week randomized trial severe depression MADRS baseline\", \"n\": 5, \"total_hits\": 27, \"articles\": [{\"pmid\": \"36482694\", \"title\": \"Influences of resting-state intrinsic functiona"
+  },
+  {
+   "hyp": "H3",
+   "step": 3,
+   "tool": "literature",
+   "args": {
+    "action": "literature",
+    "query": "antidepressant phase 2 design sample size power depression heterogeneous response"
+   },
+   "obs_preview": "{\"query\": \"antidepressant phase 2 design sample size power depression heterogeneous response\", \"n\": 0, \"articles\": []}"
+  }
+ ],
+ "_connector_activity": {
+  "drug_mechanism": {
+   "calls": 3,
+   "succeeded_with_data": 3
+  },
+  "literature": {
+   "calls": 25,
+   "succeeded_with_data": 14
+  },
+  "similar_trials": {
+   "calls": 3,
+   "succeeded_with_data": 3
+  },
+  "target_disease": {
+   "calls": 3,
+   "succeeded_with_data": 1
+  }
+ },
+ "_demo_beats": {
+  "agency": "3 hypotheses, 34 tool calls across 4 connectors",
+  "mechanism_catch": "Week 2 endpoint captures only placebo response and acute drug tolerability noise, missing true antidepressant signal that emerges by Week 4\u20136.",
+  "critic_action": "critic acted on 3/3 findings: 0 upheld, 3 downgraded, 0 rejected"
+ },
+ "_citation_gate": "Register 'sources' captured from actual tool outputs (real by construction); empty/null records are NOT counted as sources. Ids typed into reasoning are verified against retrieved ids; fabricated ids stripped; findings with zero verified citations dropped."
+}

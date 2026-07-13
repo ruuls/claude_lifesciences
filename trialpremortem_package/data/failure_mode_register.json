@@ -1,0 +1,87 @@
+{
+  "draft": {
+    "cond": "Non-small cell lung cancer",
+    "phase": "PHASE2",
+    "n_incl": 12,
+    "n_excl": 22,
+    "age_span": 42,
+    "enroll_target": 40,
+    "n_arms": 2,
+    "endpoint": "Progression-free survival at 6 months",
+    "competition": 35,
+    "notes": "Excludes prior immunotherapy, any autoimmune disease, brain metastases, ECOG >1, age >75, prior malignancy within 5 years. Requires EGFR mutation-positive status. Single screening visit stacks CT, PET, ECG, biomarker panel, and tumor biopsy."
+  },
+  "risk_score": 0.345,
+  "model_drivers": [
+    "22 exclusion criteria vs 9 typical for this condition/phase \u2014 13 more gates for patients to clear"
+  ],
+  "precedent": [
+    "- carcinoma, non- PHASE2: 5 exclusions, enroll target 23 -> TERMINATED: See Termination Reason in Detailed Description.",
+    "- non small cell  NA: 1 exclusions, enroll target 59 -> completed",
+    "- non-small-cell  PHASE3: 16 exclusions, enroll target 0 -> terminated (reason not stated)",
+    "- non small cell  PHASE1: 4 exclusions, enroll target 70 -> completed",
+    "- metastatic non  PHASE2: 15 exclusions, enroll target 255 -> completed",
+    "- non-small cell  NA: 9 exclusions, enroll target 15 -> TERMINATED: projected enrollment rate not feasible"
+  ],
+  "persona_findings": {
+    "biostatistician": {
+      "issue": "Exclusion criteria set creates untenable enrollment bottleneck for 40-patient target",
+      "severity": "high",
+      "evidence": "22 exclusion criteria (13 above peer median of 9); accrual-failure risk score 0.345; historical precedent shows a Phase 2 NSCLC trial with only 9 exclusions terminated due to \"projected enrollment rate not feasible\" at target 15; this protocol's 40-patient target with 22 exclusions is substantially more restrictive. Comorbidity stacking (autoimmune disease, prior malignancy within 5 years, ECOG >1, age cutoff at 75) further narrows candidacy in typical NSCLC populations.",
+      "recommendation": "Audit the 22 exclusion criteria for scientific necessity vs. operational burden. Prioritize retention of only exclusions with clear mechanistic or safety rationale (e.g., brain metastases for immunotherapy; active autoimmune for checkpoint inhibitors). Consider relaxing time windows (5-year prior malignancy could expand to 2\u20133 years if oncologically sound) and raising ECOG threshold to \u22652 if the agent's safety profile allows. Model enrollment under looser criteria; target \u226512 exclusions. If Phase 2 enrollment remains <50 screened per excluded patient, redesign is warranted before launch."
+    },
+    "regulatory": {
+      "issue": "Enrollment feasibility severely compromised by restrictive inclusion/exclusion criteria profile",
+      "severity": "high",
+      "evidence": "Protocol specifies 22 exclusion criteria\u2014nearly triple the peer median of 9\u2014combined with a stringent enrollment target of 40 in a Phase 2 NSCLC trial. The ML risk engine flags accrual failure at 0.345 (moderate-high). Historical precedent shows two Phase 2 NSCLC trials with 15 exclusions (255 enrollment target: completed) and 5 exclusions (23 target: *terminated*), suggesting the absolute count and restrictiveness pose genuine attrition risk. The exclusion of all prior immunotherapy, any autoimmune disease, and brain metastases\u2014combined with EGFR mutation-positive requirement\u2014narrows the screened population substantially. A third historical trial with 9 exclusions and 15 enrollment target was explicitly *terminated for projected enrollment rate infeasibility*, a nearly identical design footprint."
+    },
+    "site_coordinator": {
+      "issue": "Enrollment failure risk driven by exclusion criteria burden and narrow eligibility combined with inadequate enrollment target",
+      "severity": "high",
+      "evidence": "22 exclusion criteria (13 above peer median of 9) in a Phase 2 trial targeting only 40 patients with EGFR mutation-positive NSCLC and stringent comorbidity/prior treatment restrictions. Historical precedent: a Phase 2 carcinoma trial with 5 exclusions and target 23 terminated; an NSCLC Phase 2 trial with 15 exclusions achieved target of 255 (adequate scale offset burden), whereas this design has 22 criteria and only 40-patient target\u2014approaching the failed trial's low-threshold model. The risk engine flags accrual failure at 0.345 with exclusion count as primary driver.",
+      "recommendation": "Reduce exclusion criteria to \u226415 (preferably \u226412) by relaxing or removing low-impact restrictions (e.g., prior malignancy \u226410 years if not active, ECOG \u22642 if performance stable, consider autoimmune disease subgrouping rather than blanket exclusion). Alternatively, raise enrollment target to 60\u201380 to create statistical buffer for screen-fail rate. Conduct feasibility screening at 2\u20133 sites for 4 weeks to ground enrollment velocity estimate before finalizing protocol."
+    },
+    "patient_advocate": {
+      "issue": "Exclusion criterion density creates unsustainable enrollment funnel for Phase 2 trial with modest target",
+      "severity": "high",
+      "evidence": "Protocol specifies 22 exclusion criteria\u201413 above peer median (9)\u2014for a 40-patient Phase 2 target. The quantitative risk engine flags accrual-failure risk at 0.345. Historical precedent is instructive: a Phase 2 NSCLC trial with 15 exclusions and 255-patient target completed, but a Phase 2 with 5 exclusions and only 23-patient target terminated; a Phase 2 with 9 exclusions and 15-patient target explicitly terminated due to infeasible enrollment rate. The proposed trial's ratio of exclusion criteria to enrollment target is more restrictive than the terminated comparators and compounds exclusivity through stacked requirements: prior immunotherapy exclusion, mandatory EGFR mutation positivity, and autoimmune disease exclusion shrink the eligible pool below 30% of typical NSCLC populations. Single-visit cascade screening (CT, PET, ECG, biomarker, biopsy) further filters willing enrollees."
+    },
+    "safety_physician": {
+      "issue": "Accrual failure due to excessive exclusion criteria compounded by narrow enrollment target",
+      "severity": "high",
+      "evidence": "22 exclusion criteria (vs. median 9 for peer trials); accrual-failure risk score 0.345; directly mirrors historical precedent: a Phase 2 non-small-cell trial with 9 exclusions and target 15 was terminated for \"projected enrollment rate not feasible.\" This draft has 13 more exclusionary gates (22 vs. 9) yet only a 40-person target, compressing the eligible population further. Additional enrollment pressure from EGFR mutation-positive requirement (filters ~60% of NSCLC population) plus autoimmune disease exclusion (common in older, treatment-eligible patients).",
+      "recommendation": "Conduct formal eligibility audit: map each exclusion criterion to enrollment impact and retention risk. Prioritize dropping or relaxing non-safety-critical exclusions (prior malignancy within 5 years, autoimmune disease if disease-controlled). Consider raising enrollment target to 60\u201380 to account for attrition and provide statistical buffer. If EGFR enrichment is scientifically essential, pre-screen baseline mutation status before screening visit to avoid screening failures on costly 5-modality workup."
+    }
+  },
+  "failure_mode_register": "# Clinical Trial Protocol Red Team: Failure-Mode Register\n\n**Model Accrual-Failure Risk Score: 0.345 (Moderate-High)**\n\n---\n\n## **CONSOLIDATED FINDINGS**\n\nAll five reviewers identified **one primary failure mode** with convergent evidence and high consensus. Below is the ranked register.\n\n---\n\n## **1. ACCRUAL FAILURE: Exclusion Criteria Density + Target Mismatch**\n\n| Attribute | Detail |\n|-----------|--------|\n| **Failure Mode** | Protocol specifies 22 exclusion criteria (13 above peer median of 9) paired with a 40-patient Phase 2 enrollment target, creating an untenable screening-to-enrollment funnel. Historical Phase 2 NSCLC precedent: a trial with 9 exclusions and 15-patient target was explicitly *terminated for projected enrollment rate infeasibility*. This protocol is substantially more restrictive (22 vs. 9 exclusions) yet has a comparable or only marginally larger target (40 vs. 15). |\n| **Why It Matters** | Accrual failure terminates the trial, wastes site and sponsor resources, delays patient access to the investigational agent, and undermines the scientific question. The quantitative risk engine flags this at 0.345\u2014moderate-high probability. Stacked exclusions (EGFR mutation-positive *requirement* + prior immunotherapy exclusion + autoimmune disease blanket exclusion + ECOG \u22641 + age \u226475 + prior malignancy <5 years) compress eligible population to <30% of typical NSCLC cohorts in participating centers. |\n| **Severity** | **CRITICAL** |\n| **Evidence Strength** | **Very Strong** \u2014 five independent reviewers from different disciplines; quantitative risk model; three direct historical precedents (Phase 2 NSCLC trial with 9 exclusions/15-patient target *terminated*; Phase 2 with 15 exclusions/255-patient target *completed*; Phase 2 with 5 exclusions/23-patient target *terminated*). The protocol's restrictiveness falls between the two failed comparators and trends toward failure. |\n| **Concrete Design Changes** | **Tier 1 (Recommended):****Audit all 22 exclusion criteria for scientific vs. operational necessity.** Retain only exclusions with clear mechanistic or safety rationale (e.g., brain metastases for immunotherapy; active autoimmune disease for checkpoint inhibitors). **Target \u226412 exclusion criteria** by: <ul><li>Relaxing prior malignancy window from <5 years to \u226410 years (if oncologically sound and not active disease).</li><li>Raising ECOG threshold from \u22641 to \u22642 if agent's safety profile permits.</li><li>Converting autoimmune disease blanket exclusion to disease-specific subgrouping or requirement for stable control.</li><li>Removing or relaxing non-mechanistic operational exclusions (e.g., strict age cutoff).</li></ul>**Tier 2 (Alternative or Complementary):** If scientific exclusions cannot be relaxed, **raise enrollment target to 60\u201380 patients** to create a statistical buffer for screen-fail attrition and offset exclusion burden. **Tier 3 (De-risking):** Conduct feasibility screening at 2\u20133 representative sites for 4 weeks *before* finalizing protocol to empirically ground enrollment velocity and screen-fail rates. If screened-to-enrolled ratio remains <2:1, redesign is warranted. **Tier 4 (Operational):** Implement pre-screening of EGFR mutation status (molecular reflex on prior pathology or rapid cfDNA assay) *before* enrollment visit to avoid costly 5-modality screening workups (CT, PET, ECG, biomarker, biopsy) on ineligible patients. |\n\n---\n\n## **SECONDARY OBSERVATIONS**\n\n- **No distinct secondary failure modes** emerged; all five reviewers converged on the primary accrual-failure mechanism.\n- **No safety or scientific deficiencies** were flagged by the panel.\n- **Enrollment feasibility is the single actionable bottleneck** before launch.\n\n---\n\n## **RECOMMENDATION SUMMARY**\n\n**Before finalizing the protocol, conduct a formal eligibility audit and feasibility pilot.** The current design profile carries unacceptably high termination risk. A combination of exclusion-criteria relaxation (targeting \u226412 criteria) and feasibility screening will substantially de-risk accrual and improve the likelihood of completing the Phase 2 trial within expected timelines.",
+  "whatif": {
+    "baseline_risk": 0.345,
+    "scenarios": [
+      {
+        "edit": "Combined: cut exclusions to median + 1.5x enrollment buffer",
+        "new_risk": 0.148,
+        "delta": -0.197
+      },
+      {
+        "edit": "Cut exclusions from 22 to peer median",
+        "new_risk": 0.185,
+        "delta": -0.16
+      },
+      {
+        "edit": "Raise enrollment target from 40 to 60 (attrition buffer)",
+        "new_risk": 0.276,
+        "delta": -0.069
+      },
+      {
+        "edit": "Cut exclusions from 22 to 17 (drop lowest-value gates)",
+        "new_risk": 0.359,
+        "delta": 0.014
+      },
+      {
+        "edit": "Widen age band by 15 years (span 42->57)",
+        "new_risk": 0.398,
+        "delta": 0.053
+      }
+    ]
+  }
+}

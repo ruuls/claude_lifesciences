@@ -45,6 +45,10 @@ python -m trialpremortem.demo --replay
 
 Both read a genuine recorded run (`data/agentic_harness_demo.json`) — **no network, no API keys** — so the demo is deterministic on stage. The web page is one file with everything inlined (no external assets, no build step); double-click it or serve it anywhere. To run the agent for real against live connectors, from a Claude Science `repl` cell: `from trialpremortem.demo import live; live(host)`.
 
+### Presenting the project (the story)
+
+`story.html` is a standalone, scrollable explainer for walking an audience through **the intuition and the build** — the problem, the backtest-against-version-history bet, the five-layer architecture, how we kept the numbers honest (the enrollment leak, the citation gate), and the evidence. Open it directly in a browser; it links straight to the demo.
+
 ## The agentic architecture (the harness)
 
 TrialPremortem is not five fixed prompts — it is an **autonomous tool-use agent** with a real reasoning loop:
